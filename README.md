@@ -14,6 +14,16 @@ $ sudo docker run -d --name pptp-vpn \
 --net=host \
 --volume pptp-conf:/etc/ppp coun/pptp-vpn:latest
 ```
+or
+```bash
+sudo docker run -d --name pptp-guest \
+--restart always \
+--cap-add=NET_ADMIN \
+--cap-add=SYS_MODULE \
+--cap-add MKNOD --device=/dev/ppp \
+--net=host \
+--volume pptp-conf:/etc/ppp coun/pptp-vpn:latest
+ ```
  
  directory structure /etc/ppp:
  ```bash

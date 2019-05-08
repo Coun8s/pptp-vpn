@@ -5,6 +5,7 @@ VPN PPTP in Docker
 Create volumes:
 ```bash
   $ sudo docker volume create pptp-conf
+  $ sudo docker volume create pptp-client
 ```
 Start container:
 ```bash
@@ -12,7 +13,10 @@ $ sudo docker run -d --name pptp-vpn \
 --restart always \
 --privileged \
 --net=host \
---volume pptp-conf:/etc/ppp coun/pptp-vpn:latest
+-net=host \
+--volume pptp-conf:/etc/pptpd.conf \
+--volume pptp-client:/etc/ppp \
+coun/pptp-vpn:latest
 ```
 or
 ```bash
@@ -22,7 +26,9 @@ sudo docker run -d --name pptp-guest \
 --cap-add=SYS_MODULE \
 --cap-add MKNOD --device=/dev/ppp \
 --net=host \
---volume pptp-conf:/etc/ppp coun/pptp-vpn:latest
+--volume pptp-conf:/etc/pptpd.conf \
+--volume pptp-client:/etc/ppp \
+coun/pptp-vpn:latest
  ```
  
  directory structure /etc/ppp:
@@ -35,5 +41,4 @@ sudo docker run -d --name pptp-guest \
   ├── options.pptp
   ├── options.pptpd
   ├── pap-secrets
-  └── pptpd.conf (symlink on /etc/pptpd.conf)
-  ```
+    ```

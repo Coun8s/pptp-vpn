@@ -17,7 +17,7 @@ coun/pptp-vpn:latest
 ```
 or
 ```bash
-sudo docker run -d --name pptp-guest \
+sudo docker run -d --name pptp-vpn \
 --restart always \
 --cap-add=NET_ADMIN \
 --cap-add=SYS_MODULE \

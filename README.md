@@ -12,7 +12,7 @@ $ sudo docker run -d --name pptp-vpn \
 --restart always \
 --privileged \
 --net host \
---volume pptp-client:/etc/ppp \
+--volume pptp-conf:/etc/ppp \
 coun/pptp-vpn:latest
 ```
 or
